@@ -3,15 +3,24 @@
 
   "name": "Chez Nestor Trello Addon",
   "description": "Improves Trello and other internal tools for our use-cases",
-  "version": "1.0.0",
-  "content_scripts": [{
-    // TODO: find what goes here
-  }],
+  "version": "1.0.1",
+  "icons": {
+    "128": "icon128.png",
+    "48": "icon48.png",
+    "16": "icon16.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://trello.com/*"],
+      "js": ["jquery.js", "content.js"]
+    }
+  ],
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "icon16.png",
     "default_title": "Chez Nestor"
   },
   "permissions": [
-    // TODO: find what goes here
+    "tabs",
+    "https://trello.com/*"
   ]
 }

@@ -2,7 +2,7 @@ window.addEventListener("load", myMain, false);
 
 function updateUI() {
     "use strict";
-    //add link 'Copy emails to clipboard' to all divs. Links id are 0, 1, 2
+    //add link 'Copy emails to clipboard' to all divs. Links id are div0, div1, div2
     $('.js-list.list-wrapper').each(function (i) {
         "use strict";
         $(this).find('.icon-sm.icon-overflow-menu-horizontal').click(function () {
@@ -12,11 +12,13 @@ function updateUI() {
                 //addclickListener
                 let numberOfDiv = $('.js-list.list-wrapper').length;
                 for (let i = 0; i < numberOfDiv; i++) {
-                    $('#div' + i).click(function (i) {
-                        console.log('hello from ' + i);
+                    $('#div' + i).click(function () {
+                        let str = getEmails(i);
+                        console.log(str);
+                        window.prompt("Copy to clipboard: Ctrl+C, Enter", str);
                     });
                 }
-            }, 50);
+            }, 100);
         });
     });
 }
@@ -27,17 +29,26 @@ function extractEmails(text) {
 }
 
 function getEmails(idDiv) {
+    let str = '';
     "use strict";
     $('.js-list.list-wrapper').each(function (i) {
         $(this).find('.list-card.js-member-droppable.ui-droppable').each(function (j) {
             //test card label
-            if (!$(this).find('.card-label').hasClass('card-label-black')) {
+            if (!$(this).find('.card-label').hasClass('card-label-black') && i === idDiv) {
                 let email = $(this).find('.list-card-title.js-card-name').text().trim();
                 email = extractEmails(email);
-                console.log('bloc ' + i + ' ligne ' + j + ' ' + email);
+                if (email) {
+                    if (!str) {
+                        str += email;
+                    } else {
+                        str += ', ' + email + ' ';
+                    }
+
+                }
             }
         });
     });
+    return str.trim();
 }
 
 function myMain(evt) {

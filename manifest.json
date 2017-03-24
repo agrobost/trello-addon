@@ -1,6 +1,5 @@
 {
   "manifest_version": 2,
-
   "name": "Chez Nestor Trello Addon",
   "description": "Improves Trello and other internal tools for our use-cases",
   "version": "1.0.1",
@@ -11,8 +10,13 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://trello.com/*"],
-      "js": ["content.js", "jquery.js"]
+      "matches": [
+        "https://trello.com/*"
+      ],
+      "js": [
+        "content.js",
+        "jquery.js"
+      ]
     }
   ],
   "browser_action": {

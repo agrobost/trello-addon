@@ -12,7 +12,7 @@
   "content_scripts": [
     {
       "matches": ["https://trello.com/*"],
-      "js": ["jquery.js", "content.js"]
+      "js": ["content.js", "jquery.js"]
     }
   ],
   "browser_action": {
